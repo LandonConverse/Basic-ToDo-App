@@ -75,3 +75,13 @@ background-color: black;
     height: 650px;
     background-color: #4b007d;
 }
+
+.DeleteButtion
+{
+    margin-left: 10px;
+}
+
+.TodoItem {
+    display: flex;
+    justify-content: space-between;
+}
