@@ -85,3 +85,16 @@ background-color: black;
     display: flex;
     justify-content: space-between;
 }
+
+.EditTitle
+{
+    font-family: unset;
+    font-size: 16px;
+}
+
+.EditDescription
+{
+    resize: none;
+    font-family: unset;
+    font-size: 16px;
+}

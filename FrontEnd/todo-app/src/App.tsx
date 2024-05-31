@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Display } from './components/TodoDisplay';
+import { TodoCreate } from './components/TodoCreate';
 
 function App() 
 {
     return (
-        <Display/>
+        <TodoCreate/>
     )
 }
 
