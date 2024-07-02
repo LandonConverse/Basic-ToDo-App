@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TodoCreate.css';
 import { title } from 'process';
+import axios from 'axios';
 
 type TodoItem = {
     title: string;
@@ -18,7 +19,7 @@ const MyButtonWithTypeOfButton = (props: React.DetailedHTMLProps<React.ButtonHTM
     <button {...props} type="button">{props.children}</button>
 )
 
-export const TodoCreate = () => {
+ export const TodoCreate = () => {
     const [items, setItems] = useState<TodoItem[]>([])
     const [form, setForm] = useState<TodoForm>({
         title: '',
@@ -39,6 +40,21 @@ export const TodoCreate = () => {
             setItemIdToEdit(itemId);
         }
     }
+
+    useEffect(() => {
+        const fetchTodos = async () => {
+            try {
+                const response = await axios.get<TodoItem[]>('http://localhost:3000/todos');
+                setItems(response.data);
+                console.log("got todos")
+            } catch (error) {
+                console.error('Error fetching todos:', error);
+            }
+        };
+    
+        fetchTodos();
+    }, []);
+    
 
     const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, key: keyof TodoForm) => {
         const value = e.target.value;
@@ -64,9 +80,9 @@ export const TodoCreate = () => {
             }
             return item;
         });
-        setItems(updatedItems); // Changed this line
-        setEditForm({ title: '', description: '' }); // Added this line
-        setItemIdToEdit(null); // Added this line
+        setItems(updatedItems); 
+        setEditForm({ title: '', description: '' }); 
+        setItemIdToEdit(null); 
     };
 
     return (
