@@ -1,4 +1,3 @@
-require("dotenv").config();
 import express, { Request, Response } from "express";
 import { Pool } from "pg";
 
@@ -19,7 +18,7 @@ type TodoItem = {
 const getTodos = async (req: Request, res: Response): Promise<void> => {
   try {
     const queryResult = await pool.query(
-      "SELECT * FROM todoItems ORDER BY id ASC"
+      "SELECT * FROM todo_item ORDER BY id ASC"
     );
     const todos: TodoItem[] = queryResult.rows;
     res.status(200).json({ todos });
